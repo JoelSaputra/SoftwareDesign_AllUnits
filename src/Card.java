@@ -1,10 +1,11 @@
-
+import java.util.Random;
 /**
  * Implementation of a playing card. This class yields immutable objects.
  */
 public class Card {
     private Rank aRank;
     private Suit aSuit;
+    private static Random aRandom = new Random();
 
     /**
      * Creates a new card object.
@@ -32,5 +33,10 @@ public class Card {
      */
     public Suit getSuit() {
         return aSuit;
+    }
+
+    public static Card random(){
+       return new Card(Rank.values()[aRandom.nextInt(Rank.values().length)], Suit.values()[aRandom.nextInt(Suit.values().length)]);
+
     }
 }
