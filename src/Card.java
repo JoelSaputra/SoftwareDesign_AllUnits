@@ -1,12 +1,17 @@
-import java.util.Random;
-import java.util.Optional;
+
+import java.util.Comparator;
+
 /**
- * Implementation of a playing card. This class yields immutable objects.
+ * Implementation of a playing card. This class yields immutable objects. This
+ * version of the class also implements the Comparable interface and compares
+ * cards by rank, with an undefined order for cards of the same rank. The class
+ * also includes a static factory method to create Comparator objects that can
+ * compare cards according to their rank.
  */
-public class Card {
+public class Card implements Comparable<Card> {
+
     private Rank aRank;
     private Suit aSuit;
-    private static Random aRandom = new Random();
 
     /**
      * Creates a new card object.
@@ -22,41 +27,41 @@ public class Card {
         aSuit = pSuit;
     }
 
-
     /**
      * @return The rank of the card.
      */
-    public Rank getRank() {
+    public Rank rank() {
         return aRank;
     }
 
     /**
      * @return The suit of the card.
      */
-    public Suit getSuit() {
+    public Suit suit() {
         return aSuit;
     }
 
-    public static Card random(){
-       return new Card(Rank.values()[aRandom.nextInt(Rank.values().length)], Suit.values()[aRandom.nextInt(Suit.values().length)]);
-
+    @Override
+    public int compareTo(Card pCard) {
+        return aRank.compareTo(pCard.aRank);
     }
 
-    public Card nextCard(){
-        if(this.getRank() == Rank.KING){
-            return new Card(this.getRank().next(), this.getSuit().next());
-        }
-
-        else{
-            return new Card(this.getRank().next(), this.getSuit());
-        }
-
+    /**
+     * Sample static factory method to create a comparator capable of comparing
+     * cards by rank.
+     *
+     * @return The created comparator.
+     */
+    public static Comparator<Card> createByRankComparator() {
+        return new Comparator<Card>() {
+            public int compare(Card pCard1, Card pCard2) {
+                return pCard1.aRank.compareTo(pCard2.aRank);
+            }
+        };
     }
-
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("%s of %s", aRank, aSuit);
-
     }
 }
