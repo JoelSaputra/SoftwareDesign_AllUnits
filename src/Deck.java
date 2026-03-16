@@ -19,6 +19,11 @@ public class Deck {
         shuffle();
     }
 
+    public Deck (Deck pDeck){
+        assert pDeck != null;
+        aCards.addAll(pDeck.aCards);
+    }
+
     /**
      * Reinitializes the deck with all 52 cards, and shuffles them.
      */

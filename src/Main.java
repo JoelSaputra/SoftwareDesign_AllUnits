@@ -5,15 +5,16 @@ public class Main{
 
 
 
-
     public static void main(String[] args) {
-        Card randomCard = Card.random();
-        System.out.println(randomCard.toString());
-        System.out.println(randomCard.nextCard().toString());
+        // Create original MultiDeck with some decks
+        MultiDeck original = new MultiDeck(10);
 
+        // Create a copy using your copy constructor
+        MultiDeck copy = new MultiDeck(original, "deepCopyTest");
+
+        // Now verify they share the same Deck objects
+        System.out.println("Done");
     }
-
-
 
 
 
