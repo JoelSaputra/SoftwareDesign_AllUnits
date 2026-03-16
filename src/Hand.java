@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Hand implements Iterable<Card>{
+public class Hand implements Iterable<Card>, Comparable<Hand>{
 
     private int aNumberOfCards;
     private List<Card> aHand;
@@ -35,17 +35,21 @@ public class Hand implements Iterable<Card>{
     }
 
     public boolean isEmpty(){
-        if (aHand.size() == 0){
+        if (this.size() == 0){
             return true;
         }
         return false;
     }
 
     public boolean isFull(){
-        if (aHand.size() == aNumberOfCards){
+        if (this.size() == aNumberOfCards){
             return true;
         }
         return false;
+    }
+
+    public int size(){
+        return aHand.size();
     }
 
     public Card getCard(Card pCard){
@@ -77,6 +81,11 @@ public class Hand implements Iterable<Card>{
     @Override
     public Iterator<Card> iterator(){
         return aHand.iterator();
+    }
+
+    @Override
+    public int compareTo(Hand otherHand){
+        return this.size() - otherHand.size();
     }
 
 
