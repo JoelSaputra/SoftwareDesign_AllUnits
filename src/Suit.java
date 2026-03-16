@@ -6,6 +6,10 @@ import java.awt.*;
 public enum Suit {
     CLUBS, DIAMONDS, SPADES, HEARTS;
 
+    public Suit next(){
+        return Suit.values()[(ordinal() + 1) % Suit.values().length ];
+    }
+
     public enum Color{
         RED, BLACK;
     }

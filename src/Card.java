@@ -39,4 +39,22 @@ public class Card {
        return new Card(Rank.values()[aRandom.nextInt(Rank.values().length)], Suit.values()[aRandom.nextInt(Suit.values().length)]);
 
     }
+
+    public Card nextCard(){
+        if(this.getRank() == Rank.KING){
+            return new Card(this.getRank().next(), this.getSuit().next());
+        }
+
+        else{
+            return new Card(this.getRank().next(), this.getSuit());
+        }
+
+    }
+
+
+    @Override
+    public String toString(){
+        return String.format("%s of %s", aRank, aSuit);
+
+    }
 }
