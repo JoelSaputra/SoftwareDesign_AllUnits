@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -88,5 +89,35 @@ public class Hand implements Iterable<Card>, Comparable<Hand>{
         return this.size() - otherHand.size();
     }
 
+    public Comparator<Hand> compareByRank(Rank pRank){
+        return new Comparator<Hand>() {
+            @Override
+            public int compare(Hand pHand1, Hand pHand2) {
+                int total_pHand1 = 0;
+                int total_pHand2 = 0;
 
-}
+                for(Card card : pHand1){
+                    if(card.rank().equals(pRank)){
+                        total_pHand1++;
+                    }
+                }
+
+                for(Card card : pHand2){
+                    if(card.rank().equals(pRank)){
+                        total_pHand2++;
+                    }
+                }
+
+                return total_pHand1 - total_pHand2;
+
+            }
+
+        };
+    }
+
+
+
+    }
+
+
+
