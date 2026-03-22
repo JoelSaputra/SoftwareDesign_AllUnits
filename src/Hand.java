@@ -89,7 +89,7 @@ public class Hand implements Iterable<Card>, Comparable<Hand>{
         return this.size() - otherHand.size();
     }
 
-    public Comparator<Hand> compareByRank(Rank pRank){
+    public static Comparator<Hand> compareByRank(Rank pRank){
         return new Comparator<Hand>() {
             @Override
             public int compare(Hand pHand1, Hand pHand2) {
@@ -114,6 +114,29 @@ public class Hand implements Iterable<Card>, Comparable<Hand>{
 
         };
     }
+
+
+    public static Comparator<Hand> compareByIncrease(){
+        return new Comparator<Hand>() {
+            public int compare(Hand pHand1, Hand pHand2){
+                return pHand1.size() - pHand2.size();
+            }
+        };
+
+
+    }
+
+    public static Comparator<Hand> compareByDecrease() {
+        return new Comparator<Hand>() {
+            public int compare(Hand pHand1, Hand pHand2) {
+                return pHand2.size() - pHand1.size();
+            }
+        };
+
+    }
+
+
+
 
 
 
