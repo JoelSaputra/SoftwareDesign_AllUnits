@@ -1,26 +1,28 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
-public class Hand implements Iterable<Card>, Comparable<Hand>{
+public class EnhancedHand implements Iterable<Card>, Comparable<EnhancedHand>{
 
     private final int aNumberOfCards;
     private final List<Card> aHand;
+    private final Comparator<Card> aComparator;
 
 
-    public Hand(int pNumberOfCards){
+    public EnhancedHand(int pNumberOfCards, Comparator<Card> pComparator){
 
         assert pNumberOfCards > 0;
+        assert pComparator != null;
         aNumberOfCards = pNumberOfCards;
         List<Card> pHand = new ArrayList<>();
         aHand = pHand;
+        aComparator = pComparator;
+
     }
 
     public void add(Card pCard){    //Change this for exercise 9
         assert !this.isFull();
         assert pCard != null;
         aHand.add(pCard);
+        Collections.sort(aHand, aComparator);
     }
 
     public void remove(Card pCard){
@@ -85,14 +87,14 @@ public class Hand implements Iterable<Card>, Comparable<Hand>{
     }
 
     @Override
-    public int compareTo(Hand otherHand){
+    public int compareTo(EnhancedHand otherHand){
         return this.size() - otherHand.size();
     }
 
-    public static Comparator<Hand> compareByRank(Rank pRank){
-        return new Comparator<Hand>() {
+    public static Comparator<EnhancedHand> compareByRank(Rank pRank){
+        return new Comparator<EnhancedHand>() {
             @Override
-            public int compare(Hand pHand1, Hand pHand2) {
+            public int compare(EnhancedHand pHand1, EnhancedHand pHand2) {
                 int total_pHand1 = 0;
                 int total_pHand2 = 0;
 
@@ -142,7 +144,7 @@ public class Hand implements Iterable<Card>, Comparable<Hand>{
 
 
 
-    }
+}
 
 
 

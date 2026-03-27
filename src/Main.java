@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 
 
 public class Main{
@@ -6,14 +6,21 @@ public class Main{
 
 
     public static void main(String[] args) {
-        // Create original MultiDeck with some decks
-        MultiDeck original = new MultiDeck(10);
+        Hand hand1 = new Hand(10);
+        Hand hand2 = new Hand(10);
 
-        // Create a copy using your copy constructor
-        MultiDeck copy = new MultiDeck(original, "deepCopyTest");
+        hand1.add(new Card(Rank.ACE, Suit.SPADES)); // size 1
+        hand2.add(new Card(Rank.KING, Suit.HEARTS));
+        hand2.add(new Card(Rank.QUEEN, Suit.CLUBS)); // size 2
 
-        // Now verify they share the same Deck objects
-        System.out.println("Done");
+        List<Hand> handList = new ArrayList<>();
+        handList.add(hand1);
+        handList.add(hand2);
+
+        Collections.sort(handList, Hand.compareByIncrease());
+
+
+
     }
 
 
