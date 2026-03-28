@@ -3,7 +3,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-public class Hand implements Iterable<Card>, Comparable<Hand>{
+public class Hand implements Comparable<Hand>, ModifiableHand, StateOfHand{
 
     private final int aNumberOfCards;
     private final List<Card> aHand;
