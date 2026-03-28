@@ -1,30 +1,47 @@
 
-import java.util.Comparator;
 
 /**
  * Implementation of a playing card. This class yields immutable objects. This
- * version of the class also implements the Comparable interface and compares
- * cards by rank, with an undefined order for cards of the same rank. The class
- * also includes a static factory method to create Comparator objects that can
- * compare cards according to their rank.
+ * version of the class shows an application of the Flyweight design pattern
+ * where the flyweight store is pre-initialized.
  */
-public class Card implements Comparable<Card> {
+public class Card {
 
-    private Rank aRank;
-    private Suit aSuit;
-
-    /**
-     * Creates a new card object.
-     *
-     * @param pRank The rank of the card.
-     * @param pSuit The suit of the card.
-     * @pre pRank != null
-     * @pre pSuit != null
+    /*
+     * Implements the flyweight store as a bidimensional array. The first dimension
+     * indexes the suits by the ordinal value of their enumerated type, and the
+     * second dimension, the ranks. For example, to retrieve the two of clubs, we
+     * access CARDS[Suit.CLUBS.ordinal()][Rank.TWO.ordinal()].
      */
-    public Card(Rank pRank, Suit pSuit) {
-        assert pRank != null && pSuit != null;
+    private static final Card[][] CARDS = new Card[Suit.values().length][Rank.values().length];
+
+    private final Rank aRank;
+    private final Suit aSuit;
+
+    // Initialization of the flyweight store
+    static {
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                CARDS[suit.ordinal()][rank.ordinal()] = new Card(rank, suit);
+            }
+        }
+    }
+
+    // Private constructor
+    private Card(Rank pRank, Suit pSuit) {
         aRank = pRank;
         aSuit = pSuit;
+    }
+
+    /**
+     * @param pRank The rank of the requested card.
+     * @param pSuit The suit of the requested card.
+     * @return The unique Card instance with pRank and pSuit
+     * @pre pRank != null && pSuit != null
+     */
+    public static Card get(Rank pRank, Suit pSuit) {
+        assert pRank != null && pSuit != null;
+        return CARDS[pSuit.ordinal()][pRank.ordinal()];
     }
 
     /**
@@ -39,25 +56,6 @@ public class Card implements Comparable<Card> {
      */
     public Suit suit() {
         return aSuit;
-    }
-
-    @Override
-    public int compareTo(Card pCard) {
-        return aRank.compareTo(pCard.aRank);
-    }
-
-    /**
-     * Sample static factory method to create a comparator capable of comparing
-     * cards by rank.
-     *
-     * @return The created comparator.
-     */
-    public static Comparator<Card> createByRankComparator() {
-        return new Comparator<Card>() {
-            public int compare(Card pCard1, Card pCard2) {
-                return pCard1.aRank.compareTo(pCard2.aRank);
-            }
-        };
     }
 
     @Override
