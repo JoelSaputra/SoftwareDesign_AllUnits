@@ -1,8 +1,9 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class CompositeShow implements Show{
+public class CompositeShow implements Show, Iterable<Show>{
 
     private List<Show> aShows = new ArrayList<>();
 
@@ -35,15 +36,54 @@ public class CompositeShow implements Show{
         return time;
     }
 
-    @Override
-    public Show copy() {
-        return null;
-    }
-
     public void addWeekend(){
         for(Show show : aShows){
             show.addWeekend();
             System.out.println(show.runningTime());
         }
+    }
+
+    public Show getShow(Show pShow){
+        for(Show show : this){
+            if (pShow.equals(this)){
+                return pShow;
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    public Show copy(){
+        List<Show> showCopies = new ArrayList<>();
+        for(Show show : this){
+            if (show instanceof CompositeShow){
+                show.copy();
+            }
+            else{
+                showCopies.add(show);
+            }
+        }
+
+        return new CompositeShow(showCopies.toArray(new Show[0]));
+
+    }
+
+    @Override
+    public Iterator<Show> iterator() {
+        return aShows.iterator();
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o){
+            return true;
+        }
+        if( o == null || o.getClass() != this.getClass()){
+            return false;
+        }
+        Show show = (Show) o;
+        return true;
+
     }
 }
