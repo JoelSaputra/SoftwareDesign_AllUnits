@@ -27,7 +27,11 @@ public class CompositeShow implements Show{
 
     @Override
     public int runningTime() {
-        return 0;
+        int time = 0;
+        for (Show show : aShows) {
+            time += show.runningTime();
+        }
+        return time;
     }
 
     @Override
