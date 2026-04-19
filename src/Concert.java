@@ -51,6 +51,7 @@ public class Concert implements Show {
         return Objects.hash(aPerformer, aRunningTime, aTitle);
     }
 
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
