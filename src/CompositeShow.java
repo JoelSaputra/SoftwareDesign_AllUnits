@@ -23,6 +23,7 @@ public class CompositeShow implements Show{
 
         }
         return description.toString();
+
     }
 
     @Override

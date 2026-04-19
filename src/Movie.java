@@ -1,6 +1,7 @@
 
 import java.util.Objects;
 
+
 /**
  * Represents a show that consists of the screening of a single movie.
  */
