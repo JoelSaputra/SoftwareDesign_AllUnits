@@ -41,6 +41,12 @@ public class Concert implements Show {
     }
 
     @Override
+    public void addWeekend() {
+        aRunningTime++;
+
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(aPerformer, aRunningTime, aTitle);
     }
@@ -57,4 +63,6 @@ public class Concert implements Show {
         return Objects.equals(aPerformer, other.aPerformer) && aRunningTime == other.aRunningTime &&
                 Objects.equals(aTitle, other.aTitle);
     }
+
+
 }

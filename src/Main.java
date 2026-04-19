@@ -2,22 +2,16 @@ import java.util.*;
 
 
 public class Main{
-
-
-
     public static void main(String[] args) {
-        Hand hand1 = new Hand(10);
-        Hand hand2 = new Hand(10);
 
-        hand1.add(new Card(Rank.ACE, Suit.SPADES)); // size 1
-        hand2.add(new Card(Rank.KING, Suit.HEARTS));
-        hand2.add(new Card(Rank.QUEEN, Suit.CLUBS)); // size 2
+        Show showA = new Movie("Tomb Raider", 2001, 1900);
+        Show showB = new Movie("Maze Runner", 2018, 130);
+        Show showC = new Concert("Concert 1", "Artist X", 100);
 
-        List<Hand> handList = new ArrayList<>();
-        handList.add(hand1);
-        handList.add(hand2);
+        CompositeShow exercise01 = new CompositeShow(showA, showB, showC);
 
-        Collections.sort(handList, Hand.compareByIncrease());
+        exercise01.addWeekend();
+
 
 
 

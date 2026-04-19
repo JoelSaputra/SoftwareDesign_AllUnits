@@ -16,4 +16,7 @@ public interface Show {
     int runningTime();
 
     Show copy();
+
+    void addWeekend();
 }
+

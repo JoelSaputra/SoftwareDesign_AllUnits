@@ -58,4 +58,9 @@ public class Movie implements Show {
         Movie other = (Movie) obj;
         return aRunningTime == other.aRunningTime && Objects.equals(aTitle, other.aTitle) && aYear == other.aYear;
     }
+
+    @Override
+    public void addWeekend(){
+        aRunningTime++;
+    }
 }

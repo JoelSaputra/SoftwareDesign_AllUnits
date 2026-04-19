@@ -68,6 +68,7 @@ public class CardWithJoker {
     }
 
 
+    /*
     public CardWithJoker nextCard(){
         if(this.getRank().equals(Rank.KING)){
 
@@ -84,6 +85,7 @@ public class CardWithJoker {
 
     }
 
+     */
 
     @Override
     public String toString(){
