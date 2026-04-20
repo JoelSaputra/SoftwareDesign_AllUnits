@@ -1,4 +1,4 @@
-public abstract class AbstractShow implements Show {
+public abstract class AbstractShow implements Show{
     private final String aTitle;
     private final int aTime;
 
@@ -21,5 +21,14 @@ public abstract class AbstractShow implements Show {
         return aTime;
     }
 
+    @Override
+    public final String description() {
+        // The template: TITLE: [specific details] (TIME minutes)
+        return String.format("%s: [%s] (%d minutes)",
+                aTitle,
+                getSpecificDescription(),
+                aTime);
+    }
 
+    protected abstract String getSpecificDescription();
 }

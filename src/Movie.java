@@ -15,9 +15,10 @@ public class Movie extends AbstractShow
     }
 
     @Override
-    public String description()
-    {
-        return String.format("%s (%d)", title(), aYear);
+    protected String getSpecificDescription() {
+        // Only provide the year - title and time handled by template
+        return String.format("%d", aYear);
     }
+
 
 }

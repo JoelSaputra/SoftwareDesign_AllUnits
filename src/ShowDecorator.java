@@ -13,26 +13,35 @@ public class ShowDecorator implements Show {
     }
 
 
+    @Override
+    public String title() {
+        return "";
+    }
 
     @Override
     public String description() {
         return "[" + aSpeaker + " introduces " + aShow.description() + "]";
     }
 
-
     @Override
-    public int runningTime() {
-        return aSpeechTime + aShow.runningTime();
+    public int time() {
+        return 0;
     }
 
 
 
-    @Override
+    public int runningTime() {
+        return aSpeechTime;
+    }
+
+
+
+
     public Show copy() {
         return null;
     }
 
-    @Override
+
     public void addWeekend() {
     }
 }

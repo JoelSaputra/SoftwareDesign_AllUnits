@@ -17,9 +17,9 @@ public class Concert extends AbstractShow
     }
 
     @Override
-    public String description()
-    {
-        return String.format("%s by %s", title(), aPerformer);
+    protected String getSpecificDescription() {
+        // Only provide the year - title and time handled by template
+        return aPerformer;
     }
 
 
