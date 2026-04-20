@@ -1,4 +1,5 @@
 
+import java.rmi.UnexpectedException;
 import java.util.Objects;
 
 /**
@@ -20,5 +21,15 @@ public class Movie extends AbstractShow
         return String.format("%d", aYear);
     }
 
+    @Override
+    public void setTitle(String pTitle){
+        throw new UnsupportedOperationException("NO!");
 
+    }
+
+    @Override
+    public void setTime(int pTime) {
+        assert pTime > 10;
+        super.setTime(pTime);
+    }
 }

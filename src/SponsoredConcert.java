@@ -11,10 +11,10 @@ public class SponsoredConcert extends Concert{
     }
 
     @Override
-    public String description() {
-        return String.format("%s by %s", title(), getPerformer());
+    protected String getSpecificDescription() {
+        // Only provide the year - title and time handled by template
+        return super.getSpecificDescription();
     }
-
     @Override
     public int time(){
         return super.time() + aSponsorTime;

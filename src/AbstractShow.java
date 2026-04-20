@@ -1,6 +1,6 @@
 public abstract class AbstractShow implements Show{
-    private final String aTitle;
-    private final int aTime;
+    private String aTitle;
+    private  int aTime;
 
     protected AbstractShow(String pTitle, int pTime){
         assert pTitle != null;
@@ -25,10 +25,28 @@ public abstract class AbstractShow implements Show{
     public final String description() {
         // The template: TITLE: [specific details] (TIME minutes)
         return String.format("%s: [%s] (%d minutes)",
-                aTitle,
+                title(),
                 getSpecificDescription(),
-                aTime);
+                time());
     }
 
     protected abstract String getSpecificDescription();
+
+    public void setTitle(String pTitle){
+        aTitle = pTitle;
+
+    }
+
+    public void setTime(int pTime){
+        assert pTime > 0;
+        aTime = pTime;
+    }
+
+
+
+
+
+
+
 }
+
