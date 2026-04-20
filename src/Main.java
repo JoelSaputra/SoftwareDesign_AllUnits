@@ -14,6 +14,11 @@ public class Main{
        System.out.println(shows.runningTime());
 
 
+       Program program1 = new Program();
+       program1.addCommand(showA, Program.Day.MONDAY);
+       program1.addCommand(showB, Program.Day.SATURDAY);
+
+
 
 
 

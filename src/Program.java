@@ -2,8 +2,6 @@ import java.util.EnumMap;
 
 public class Program {
 
-
-
     public enum Day {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }
@@ -97,5 +95,34 @@ public class Program {
             }
         }
         return result.toString();
+    }
+
+
+    public Command clearCommand(){
+        return new Command() {
+            @Override
+            public void execute() {
+                clear();
+            }
+        };
+    }
+
+    public Command addCommand(Show pShow, Day pDay){
+        return new Command() {
+            @Override
+            public void execute() {
+                add(pShow, pDay);
+
+            }
+        };
+    }
+
+    public Command removeCommand(Day pDay){
+       return new Command() {
+           @Override
+           public void execute() {
+               remove(pDay);
+           }
+       };
     }
 }
