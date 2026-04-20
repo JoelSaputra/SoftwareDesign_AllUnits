@@ -41,33 +41,20 @@ public class Concert implements Show {
     }
 
     @Override
-    public void addWeekend() {
-        aRunningTime++;
-
-    }
-
-    @Override
     public int hashCode() {
-        return Objects.hash(aTitle, aPerformer, aRunningTime);
+        return Objects.hash(aPerformer, aRunningTime, aTitle);
     }
-
 
     @Override
     public boolean equals(Object obj) {
-        if( obj == this){
+        if (this == obj)
             return true;
-        }
-
-        if(obj == null || obj.getClass() != this.getClass()){
+        if (obj == null)
             return false;
-        }
-
+        if (getClass() != obj.getClass())
+            return false;
         Concert other = (Concert) obj;
-
-        return Objects.equals(aTitle, other.aTitle) && Objects.equals(aPerformer, other.aPerformer)
-                && aRunningTime == other.aRunningTime;
-
+        return Objects.equals(aPerformer, other.aPerformer) && aRunningTime == other.aRunningTime &&
+                Objects.equals(aTitle, other.aTitle);
     }
-
-
 }

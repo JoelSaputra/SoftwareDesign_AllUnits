@@ -1,7 +1,6 @@
 
 import java.util.Objects;
 
-
 /**
  * Represents a show that consists of the screening of a single movie.
  */
@@ -21,7 +20,6 @@ public class Movie implements Show {
         aYear = pYear;
         aRunningTime = pTime;
     }
-
 
     public Movie(Movie pMovie) {
         aTitle = pMovie.aTitle;
@@ -51,22 +49,13 @@ public class Movie implements Show {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj){
+        if (this == obj)
             return true;
-        }
-        if(obj == null || obj.getClass() != this.getClass()){
+        if (obj == null)
             return false;
-        }
-
+        if (getClass() != obj.getClass())
+            return false;
         Movie other = (Movie) obj;
-        return (this.aRunningTime == other.aRunningTime && Objects.equals(aTitle, other.aTitle) && this.aYear == other.aYear);
-
+        return aRunningTime == other.aRunningTime && Objects.equals(aTitle, other.aTitle) && aYear == other.aYear;
     }
-
-    @Override
-    public void addWeekend(){
-        aRunningTime++;
-    }
-
-
 }

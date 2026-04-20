@@ -1,10 +1,8 @@
-
 /**
  * Represents a performance that can take place in a theater. All
  * implementations of this interface should be immutable.
  */
 public interface Show {
-
 
     /**
      * @return A description of the show.
@@ -17,7 +15,4 @@ public interface Show {
     int runningTime();
 
     Show copy();
-
-    void addWeekend();
 }
-
