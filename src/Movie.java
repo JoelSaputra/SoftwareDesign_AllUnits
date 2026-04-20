@@ -4,34 +4,20 @@ import java.util.Objects;
 /**
  * Represents a show that consists of the screening of a single movie.
  */
-public class Movie implements Show
+public class Movie extends AbstractShow
 {
-    private String aTitle;
-    private int aTime;
-    private int aYear;
+    private final int aYear;
 
     public Movie(String pTitle, int pYear, int pTime)
     {
-        aTitle = pTitle;
-        aTime = pTime;
-        aYear = pYear;
-    }
-
-    @Override
-    public String title()
-    {
-        return aTitle;
+       super( pTitle, pYear);
+       aYear = pYear;
     }
 
     @Override
     public String description()
     {
-        return String.format("%s (%d)", aTitle, aYear);
+        return String.format("%s (%d)", title(), aYear);
     }
 
-    @Override
-    public int time()
-    {
-        return aTime;
-    }
 }

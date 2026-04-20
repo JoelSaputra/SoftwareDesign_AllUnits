@@ -4,51 +4,24 @@ import java.util.Objects;
 /**
  * Represents a show that consists of the screening of a single movie.
  */
-public class Concert implements Show
+public class Concert extends AbstractShow
 {
-    private String aTitle;
-    private String aPerformer;
-    private int aTime;
+    private final String aPerformer;
+
 
     public Concert(String pTitle, String pPerformer, int pTime)
     {
-        aTitle = pTitle;
-        aPerformer = pPerformer;
-        aTime = pTime;
-    }
+       super(pTitle, pTime);
+       aPerformer = pPerformer;
 
-    public String getTitle()
-    {
-        return aTitle;
-    }
-
-    public void setTitle(String pTitle)
-    {
-        aTitle = pTitle;
-    }
-
-    @Override
-    public String title()
-    {
-        return aTitle;
     }
 
     @Override
     public String description()
     {
-        return String.format("%s by %s", aTitle, aPerformer);
+        return String.format("%s by %s", title(), aPerformer);
     }
 
-    @Override
-    public int time()
-    {
-        return aTime;
-    }
-
-    public void setTime(int pTime)
-    {
-        aTime = pTime;
-    }
 
     public String getPerformer(){
         return aPerformer;
