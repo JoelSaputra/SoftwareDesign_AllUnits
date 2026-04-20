@@ -12,7 +12,7 @@ public class SponsoredConcert extends Concert{
 
     @Override
     public String description() {
-        return String.format("%s by %s", title(), aPerformer);
+        return String.format("%s by %s", title(), getPerformer());
     }
 
     @Override

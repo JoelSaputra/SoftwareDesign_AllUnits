@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Concert implements Show
 {
     private String aTitle;
-    protected String aPerformer;
+    private String aPerformer;
     private int aTime;
 
     public Concert(String pTitle, String pPerformer, int pTime)
@@ -48,5 +48,9 @@ public class Concert implements Show
     public void setTime(int pTime)
     {
         aTime = pTime;
+    }
+
+    public String getPerformer(){
+        return aPerformer;
     }
 }
