@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
 
 public class Program {
 
@@ -6,7 +8,7 @@ public class Program {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }
 
-    private final EnumMap<Day, Show> aShows = new EnumMap<>(Day.class);
+    private EnumMap<Day, Show> aShows = new EnumMap<>(Day.class);
 
     private static Show createNoShow(){
         return new Show() {
@@ -100,9 +102,17 @@ public class Program {
 
     public Command clearCommand(){
         return new Command() {
+            private EnumMap<Day,Show> savedShows = new EnumMap<>(aShows.clone());
+
             @Override
             public void execute() {
                 clear();
+            }
+
+            @Override
+            public void undo() {
+                aShows = savedShows.clone();
+
             }
         };
     }
@@ -114,14 +124,27 @@ public class Program {
                 add(pShow, pDay);
 
             }
+
+            @Override
+            public void undo() {
+                remove(pDay);
+            }
         };
     }
 
     public Command removeCommand(Day pDay){
        return new Command() {
+           private final Show savedShow = aShows.get(pDay);
+
            @Override
            public void execute() {
                remove(pDay);
+           }
+
+           @Override
+           public void undo() {
+               add(savedShow, pDay);
+
            }
        };
     }
