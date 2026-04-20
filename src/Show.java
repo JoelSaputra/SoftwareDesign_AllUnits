@@ -2,7 +2,12 @@
  * Represents a performance that can take place in a theater. All
  * implementations of this interface should be immutable.
  */
-public interface Show {
+public interface Show
+{
+    /**
+     * @return The title of the show.
+     */
+    String title();
 
     /**
      * @return A description of the show.
@@ -10,9 +15,7 @@ public interface Show {
     String description();
 
     /**
-     * @return The running time of the show, in minutes.
+     * @return The total time required for the show.
      */
-    int runningTime();
-
-    Show copy();
+    int time();
 }
