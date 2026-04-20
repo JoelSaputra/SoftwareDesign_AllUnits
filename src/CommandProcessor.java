@@ -2,6 +2,8 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//Law of demeter
 public class CommandProcessor {
 
     private final List<Command> commandHistory = new ArrayList<>();
