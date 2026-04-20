@@ -26,4 +26,9 @@ public class Concert extends AbstractShow
     public String getPerformer(){
         return aPerformer;
     }
+
+    @Override
+    public Show clone(){
+        return (Concert) super.clone();
+    }
 }

@@ -19,4 +19,10 @@ public class SponsoredConcert extends Concert{
     public int time(){
         return super.time() + aSponsorTime;
     }
+
+    @Override
+    public Show clone(){
+        return (SponsoredConcert) super.clone();
+    }
+
 }

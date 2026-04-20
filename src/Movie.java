@@ -32,4 +32,11 @@ public class Movie extends AbstractShow
         assert pTime > 10;
         super.setTime(pTime);
     }
+
+    @Override
+    public Show clone(){
+        return (Movie) super.clone();
+    }
+
+
 }

@@ -42,11 +42,17 @@ public abstract class AbstractShow implements Show{
         aTime = pTime;
     }
 
+    @Override
+    public Show clone(){
+        try{
+            return (Show) super.clone();
+        }
 
+        catch(CloneNotSupportedException e){
+            throw new AssertionError(e);
+        }
+    }
 
+    }
 
-
-
-
-}
 
