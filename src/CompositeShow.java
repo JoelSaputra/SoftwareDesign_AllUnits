@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class CompositeShow implements Show, Iterable<Show>{
 
@@ -82,8 +79,14 @@ public class CompositeShow implements Show, Iterable<Show>{
         if( o == null || o.getClass() != this.getClass()){
             return false;
         }
-        Show show = (Show) o;
-        return true;
 
+        CompositeShow other = (CompositeShow) o;
+        return Objects.equals(aShows, other.aShows);
+
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(aShows);
     }
 }

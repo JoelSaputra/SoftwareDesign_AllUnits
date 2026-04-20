@@ -48,21 +48,25 @@ public class Concert implements Show {
 
     @Override
     public int hashCode() {
-        return Objects.hash(aPerformer, aRunningTime, aTitle);
+        return Objects.hash(aTitle, aPerformer, aRunningTime);
     }
 
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if( obj == this){
             return true;
-        if (obj == null)
+        }
+
+        if(obj == null || obj.getClass() != this.getClass()){
             return false;
-        if (getClass() != obj.getClass())
-            return false;
+        }
+
         Concert other = (Concert) obj;
-        return Objects.equals(aPerformer, other.aPerformer) && aRunningTime == other.aRunningTime &&
-                Objects.equals(aTitle, other.aTitle);
+
+        return Objects.equals(aTitle, other.aTitle) && Objects.equals(aPerformer, other.aPerformer)
+                && aRunningTime == other.aRunningTime;
+
     }
 
 

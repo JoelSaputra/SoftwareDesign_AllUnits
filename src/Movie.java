@@ -22,6 +22,7 @@ public class Movie implements Show {
         aRunningTime = pTime;
     }
 
+
     public Movie(Movie pMovie) {
         aTitle = pMovie.aTitle;
         aYear = pMovie.aYear;
@@ -50,18 +51,22 @@ public class Movie implements Show {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj){
             return true;
-        if (obj == null)
+        }
+        if(obj == null || obj.getClass() != this.getClass()){
             return false;
-        if (getClass() != obj.getClass())
-            return false;
+        }
+
         Movie other = (Movie) obj;
-        return aRunningTime == other.aRunningTime && Objects.equals(aTitle, other.aTitle) && aYear == other.aYear;
+        return (this.aRunningTime == other.aRunningTime && Objects.equals(aTitle, other.aTitle) && this.aYear == other.aYear);
+
     }
 
     @Override
     public void addWeekend(){
         aRunningTime++;
     }
+
+
 }
