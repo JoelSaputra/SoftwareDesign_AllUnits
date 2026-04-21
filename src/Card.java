@@ -10,6 +10,10 @@ import java.util.Comparator;
  */
 public class Card implements Comparable<Card> {
 
+    private enum Joker{
+        WHITE, BLACK
+    }
+
     private Rank aRank;
     private Suit aSuit;
 

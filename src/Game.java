@@ -9,8 +9,7 @@ public class Game {
         }
     };
 
-    private static final Comparator<Card> aComparator = NULL_COMPARATOR;
-
+    private Comparator<Card> aComparator = NULL_COMPARATOR;
 
 
 
