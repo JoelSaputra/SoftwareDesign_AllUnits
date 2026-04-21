@@ -1,6 +1,5 @@
 
-import java.util.Comparator;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Implementation of a playing card. This class yields immutable objects. This
@@ -11,9 +10,7 @@ import java.util.Objects;
  */
 public class Card implements Comparable<Card> {
 
-    private enum Joker{
-        WHITE, BLACK
-    }
+    private static final Map<Rank, Map<Suit,Card>> CARDS = new IdentityHashMap<>();
 
     private Rank aRank;
     private Suit aSuit;
@@ -26,10 +23,23 @@ public class Card implements Comparable<Card> {
      * @pre pRank != null
      * @pre pSuit != null
      */
-    public Card(Rank pRank, Suit pSuit) {
+    private Card(Rank pRank, Suit pSuit) {
         assert pRank != null && pSuit != null;
         aRank = pRank;
         aSuit = pSuit;
+    }
+
+    public static Card getCard(Rank pRank, Suit pSuit){
+        if(CARDS.containsKey(pRank) && CARDS.get(pRank).containsKey(pSuit)){
+            return CARDS.get(pRank).get(pSuit);
+        }
+
+        Map<Suit, Card> suitCardHashMap = new HashMap<>();
+        Card newCard = new Card(pRank, pSuit);
+        suitCardHashMap.put(pSuit, newCard );
+        CARDS.put(pRank, suitCardHashMap );
+        return newCard;
+
     }
 
     /**
