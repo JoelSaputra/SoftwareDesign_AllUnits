@@ -40,6 +40,6 @@ class Program implements ShowSubject{
 
     public void remove(Day pDay) {
         System.out.println("Removing show on " + pDay);
-        notifyObservers(pDay, "Removed", aShows.get(pDay));
+        notifyObservers(pDay, "removed", aShows.get(pDay));
     }
 }
