@@ -1,5 +1,6 @@
 
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * Implementation of a playing card. This class yields immutable objects. This
@@ -68,4 +69,29 @@ public class Card implements Comparable<Card> {
     public String toString() {
         return String.format("%s of %s", aRank, aSuit);
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if(this.getClass() != o.getClass() || o == null ){
+            return false;
+        }
+
+        Card other = (Card) o;
+        return Objects.equals(other.aRank, this.aRank) && Objects.equals(other.aSuit, other.aSuit);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(aRank, aSuit);
+
+    }
+
+
+
+
+
 }
+
