@@ -5,4 +5,11 @@
  */
 public class GameModel {
 
+    private static final GameModel INSTANCE = new GameModel();
+
+    private GameModel(){};
+
+    public static GameModel Instance(){
+        return INSTANCE;
     }
+}
