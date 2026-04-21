@@ -1,118 +1,97 @@
 
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
- * Represents a deck of playing cards. In this version the class
- * also defines a nested class Shuffler that can be used
- * to shuffle a deck a remember the number of times it was
- * shuffled.
+ * Models a deck of 52 cards.
  */
-public class Deck implements CardSource {
+public class Deck implements CardSource
+{
+    private CardStack aCards;
 
-    private final List<Card> aCards = new ArrayList<>();
+    /**
+     * @return A new List that contains all the cards in this deck.
+     */
+    public List<Card> getCards()
+    {
+        ArrayList<Card> result = new ArrayList<>();
+        for(Card card : aCards )
+        {
+            result.add(card);
+        }
+        return result;
+    }
+
+    public Stream<Card> stream()
+    {
+        return aCards.stream();
+    }
+
+    /**
+     * @return The card at the top of the deck.
+     */
+    public Card peek()
+    {
+        return aCards.peek();
+    }
 
     /**
      * Creates a new deck of 52 cards, shuffled.
      */
-    public Deck() {
+    public Deck()
+    {
         shuffle();
     }
 
     /**
      * Reinitializes the deck with all 52 cards, and shuffles them.
      */
-    public void shuffle() {
-        aCards.clear();
-        for( Suit suit : Suit.values() ) {
-            for( Rank rank : Rank.values() ) {
-                aCards.add( Card.get( rank, suit ));
+    public void shuffle()
+    {
+        List<Card> cards = new ArrayList<>();
+        for( Suit suit : Suit.values() )
+        {
+            for( Rank rank : Rank.values() )
+            {
+                cards.add( Card.get( rank, suit ));
             }
         }
-        Collections.shuffle(aCards);
+        Collections.shuffle(cards);
+        aCards = new CardStack(cards);
     }
 
     /**
-     * Places pCard on top of the deck.
-     * @param pCard The card to place on top
-     * of the deck.
-     * @pre pCard !=null
-     */
-    public void push(Card pCard) {
-        assert pCard != null;
-        aCards.add(pCard);
-    }
-
-    /**
-     * Draws a card from the deck: removes the card from the top
-     * of the deck and returns it.
+     * Draws a card from the deck and removes the card from the deck.
      * @return The card drawn.
      * @pre !isEmpty()
      */
-    public Card draw() {
+    public Card draw()
+    {
         assert !isEmpty();
-        return aCards.remove(aCards.size() - 1);
+        return aCards.pop();
     }
 
     /**
-     * @return True if and only if there are no cards in the deck.
+     * @return True iff there are no cards in the deck.
      */
-    public boolean isEmpty() {
+    public boolean isEmpty()
+    {
         return aCards.isEmpty();
     }
 
     /**
-     * @return An instance of shuffler with this Deck as its outer instance.
+     * @param pCard A card to test
+     * @return True iff the suit color of pCard is the same as the one
+     * of the card on the top of the deck.
+     * @pre !isEmpty()
+     * @pre pCard != null
      */
-    public Shuffler newShuffler() {
-        return new Shuffler();
-    }
-
-    /**
-     * A class that can shuffle a deck and remember
-     * the number of shuffles.
-     */
-    public class Shuffler {
-
-        private int aShuffles = 0;
-
-        public Shuffler() {}
-
-        public void shuffle() {
-            aShuffles++;
-            Deck.this.shuffle();
-        }
-
-        public int shuffles() {
-            return aShuffles;
-        }
-    }
-
-    /**
-     * @param pRank The rank to use to compare the decks.
-     * @return A comparator that compares two decks based on the number of cards
-     * of rank pRank that they contains.
-     *
-     * Note that this version is improved from the code in the book,
-     * by avoiding the unnecessary parameter pRank in CountCards.
-     */
-    public static Comparator<Deck> createRankComparator(Rank pRank) {
-        return new Comparator<Deck>() {
-            public int compare(Deck pDeck1, Deck pDeck2) {
-                return countCards(pDeck1) - countCards(pDeck2);
-            }
-
-            private int countCards(Deck pDeck) {
-                int result = 0;
-                for( Card card : pDeck.aCards ) {
-                    if( card.rank() == pRank ) {
-                        result++;
-                    }
-                }
-                return result;
-            }
-        };
+    public boolean topSameColorAs(Card pCard)
+    {
+        assert !isEmpty() && pCard != null;
+        return peek().suit().color() == pCard.suit().color();
     }
 }

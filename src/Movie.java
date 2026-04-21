@@ -1,42 +1,24 @@
-
-import java.rmi.UnexpectedException;
-import java.util.Objects;
-
-/**
- * Represents a show that consists of the screening of a single movie.
- */
-public class Movie extends AbstractShow
-{
+// Provided simple Movie class
+class Movie implements Show {
+    private final String aTitle;
     private final int aYear;
+    private final int aTime;
 
-    public Movie(String pTitle, int pYear, int pTime)
-    {
-       super( pTitle, pYear);
-       aYear = pYear;
+    public Movie(String pTitle, int pYear, int pTime) {
+        aTitle = pTitle;
+        aYear = pYear;
+        aTime = pTime;
     }
 
     @Override
-    protected String getSpecificDescription() {
-        // Only provide the year - title and time handled by template
-        return String.format("%d", aYear);
-    }
+    public String title() { return aTitle; }
 
     @Override
-    public void setTitle(String pTitle){
-        throw new UnsupportedOperationException("NO!");
-
-    }
+    public String description() { return String.format("%s (%d)", aTitle, aYear); }
 
     @Override
-    public void setTime(int pTime) {
-        assert pTime > 10;
-        super.setTime(pTime);
-    }
+    public int time() { return aTime; }
 
     @Override
-    public Show clone(){
-        return (Movie) super.clone();
-    }
-
-
+    public Show copy() { return new Movie(aTitle, aYear, aTime); }
 }
