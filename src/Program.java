@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
-class Program {
+class Program implements ShowSubject{
     public enum Day {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }
